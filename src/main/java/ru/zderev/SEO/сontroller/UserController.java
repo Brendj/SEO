@@ -15,19 +15,20 @@ public class UserController {
         return users.size()+1;
     }
     private List<Map<String,String>> users = new ArrayList<>() {{
-        add(new HashMap<String, String>() {{
+        add(new HashMap<>() {{
             put("id", "1");
             put("text", "first");
         }});
-        add(new HashMap<String, String>() {{
+        add(new HashMap<>() {{
             put("id", "2");
             put("text", "second");
         }});
-        add(new HashMap<String, String>() {{
+        add(new HashMap<>() {{
             put("id", "3");
             put("text", "third");
         }});
     }};
+
     @GetMapping
     public List<Map<String, String>> String() {
         return users;
@@ -41,7 +42,8 @@ public class UserController {
     private Map<String, String> getId(String id) {
         return users.stream()
                 .filter(users -> users.get("id").equals(id))
-                .findFirst().orElseThrow(NotFoundException::new);
+                .findFirst()
+                .orElseThrow(NotFoundException::new);
     }
 
     @PostMapping
@@ -52,11 +54,11 @@ public class UserController {
     }
 
     @PutMapping("{id}")
-    public List<Map<String,String>> updateUser(@PathVariable String id, @RequestBody Map<String,String> user) {
+    public Map<String,String> updateUser(@PathVariable String id, @RequestBody Map<String,String> user) {
         Map<String,String> userFromList = getId(id);
         userFromList.putAll(user);
         userFromList.put("id", id);
-        return users;
+        return userFromList;
     }
 
     @DeleteMapping("{id}")
