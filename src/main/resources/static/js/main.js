@@ -20,7 +20,7 @@ Vue.component('message-form', {
         }
     },
     watch: {
-        messageAttr: function(newVal, oldWal) {
+        messageAttr: function(newVal) {
             this.text = newVal.text;
             this.id = newVal.id;
         }
