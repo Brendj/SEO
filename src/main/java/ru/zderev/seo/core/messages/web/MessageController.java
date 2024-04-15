@@ -1,10 +1,9 @@
-package ru.zderev.SEO.core.сontroller;
+package ru.zderev.seo.core.messages.web;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import ru.zderev.SEO.core.domain.Message;
-import ru.zderev.SEO.core.repo.MessageRepo;
+import ru.zderev.seo.core.messages.Message;
 
 import java.util.List;
 import java.util.Map;

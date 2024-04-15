@@ -1,13 +1,9 @@
-package ru.zderev.SEO.core.domain;
+package ru.zderev.seo.core.messages;
 
 import jakarta.persistence.*;
-import lombok.EqualsAndHashCode;
-import lombok.ToString;
 
 @Entity
 @Table
-@ToString(of = {"id", "text"})
-@EqualsAndHashCode(of = {"id"})
 public class Message {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -20,5 +16,13 @@ public class Message {
 
     public Long getId() {
         return id;
+    }
+
+    public String getText() {
+        return text;
+    }
+
+    public void setText(String text) {
+        this.text = text;
     }
 }
