@@ -9,10 +9,12 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractAuthenticationFilterConfigurer;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
+import org.springframework.security.config.annotation.web.configurers.LogoutConfigurer;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import ru.zderev.seo.core.user.service.details.MyUserDetailService;
 
 @EnableWebSecurity
@@ -28,9 +30,11 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return  http.csrf(AbstractHttpConfigurer::disable)
-                .authorizeHttpRequests(auth -> auth.requestMatchers("/**", "/user/new-user").permitAll()
-                        .requestMatchers("seo/**").authenticated())
+                .authorizeHttpRequests(auth -> auth.requestMatchers("/**","seo/**").authenticated()
+                        .requestMatchers( "/", "/login**", "/js/**", "/error**","/user/new-user").permitAll()
+                        .anyRequest().authenticated())
                 .formLogin(AbstractAuthenticationFilterConfigurer::permitAll)
+                .logout(logout -> logout.logoutUrl("/logout").addLogoutHandler(new SecurityContextLogoutHandler()))
                 .build();
     }
 

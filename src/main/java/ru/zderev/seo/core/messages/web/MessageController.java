@@ -28,7 +28,7 @@ public class MessageController {
     }
 
     @GetMapping("{id}")
-    @PreAuthorize("hasAuthority('ROLE_ADMIN' && 'ROLE_USER')")
+//    @PreAuthorize("hasAuthority('ROLE_ADMIN' && 'ROLE_USER')")
     public Message getMessage(@PathVariable("id") Message message) {
         return message;
     }
@@ -39,14 +39,14 @@ public class MessageController {
     }
 
     @PutMapping("{id}")
-    @PreAuthorize("hasAuthority('ROLE_ADMIN' && 'ROLE_USER')")
+//    @PreAuthorize("hasAuthority('ROLE_ADMIN' && 'ROLE_USER')")
     public Message updateUser(@PathVariable("id") Message messageFromDb, @RequestBody Message message) {
         BeanUtils.copyProperties(message, messageFromDb, "id");
         return messageRepo.save(messageFromDb);
     }
 
     @DeleteMapping("{id}")
-    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
+//    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     public void deleteUser(@PathVariable("id") Message message) {
         messageRepo.delete(message);
     }
