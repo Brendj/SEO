@@ -1,4 +1,5 @@
 package ru.zderev.seo.core.user;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -11,6 +12,7 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "usr")
+@JsonIgnoreProperties({"password"})
 public class User implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

@@ -1,6 +1,7 @@
 package ru.zderev.seo.core;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,6 +19,9 @@ import java.util.HashMap;
 public class MainController {
     private final MessageRepo repo;
 
+    @Value("${spring.profile.active}")
+    private String profile;
+
     @Autowired
     public MainController(MessageRepo messageRepo) {
         this.repo = messageRepo;
@@ -32,6 +36,7 @@ public class MainController {
         data.put("messages", repo.findAll());
 
         model.addAttribute("frontendData", data);
+        model.addAttribute("isDevMode", "dev".equals(profile));
         return "index";
     }
 }

@@ -1,3 +1,9 @@
+import { createApp } from 'vue'
+import App from 'pages/App.vue'
+
+createApp(App).mount('#app')
+
+/*
 
 function getIndex(list, id) {
     for (var i = 0; i < list.length; i++) {
@@ -95,26 +101,4 @@ Vue.component('messages-list', {
         }
     }
 });
-
-var app = new Vue({
-    el: '#app',
-    template:
-        '<div>' +
-            '<div v-if="!profile">Необходимо авторизоваться <a href="/login">здесь</a></div>' +
-            '<div v-else>' +
-                '<div>{{profile.name}}&nbsp;<a href="/logout">выход</a> </div>' +
-                '<messages-list :messages="messages" />' +
-            '</div>' +
-        '</div>',
-    data: {
-        messages: frontendData.messages,
-        profile: frontendData.profile
-    },
-    created: function () {
-        // messageApi.get().then(result =>
-        //     result.json().then(data =>
-        //         data.forEach(message => this.messages.push(message))
-        //     )
-        // )
-    },
-});
+*/
