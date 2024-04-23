@@ -1,41 +1,43 @@
 <template>
   <div style="position: relative; width: 300px">
     <message-form :messages="messages" :messageAttr="message" />
-    <message-row v-for="message in messages"
-                 :key="message.id"
-                 :message="message"
-                 :editMessage="editMessage"
-                 :deleteMessage="editMessage"
-                 :messages="messages" />
+    <messages-row v-for="message in messages"
+                  :key="message.id"
+                  :message="message"
+                  :editMessage="editMessage"
+                  :deleteMessage="deleteMessage"
+                  :messages="messages" />
   </div>
 </template>
 
 <script>
+import axios from 'axios'
 import MessagesRow from "./MessagesRow.vue";
 import MessageForm from "./MessageForm.vue";
-  export default {
-    props: ['messages'],
-    components: {
-      MessagesRow
+export default {
+  props: ['messages'],
+  components: {
+    MessagesRow,
+    MessageForm
+  },
+  data() {
+    return {
+      message: null
+    }
+  },
+  methods: {
+    editMessage(message) {
+      this.message = message;
     },
-    data() {
-      return {
-        message: null
-      }
-    },
-    methods: {
-      editMessage(message) {
-        this.message = message
-      },
-      deleteMessage(message) {
-        this.$resource('/seo{/id}').remove({id: message.id}).then(result => {
-          if (result.ok) {
-            this.messages.splice(this.messages.indexOf(this.message), 1)
-          }
-        })
+    async deleteMessage(message) {
+      const response = await fetch(`/seo/${message.id}`, { method: 'DELETE' });
+
+      if (response.ok) {
+        this.messages.splice(this.messages.indexOf(message), 1);
       }
     }
   }
+}
 </script>
 
 <style>

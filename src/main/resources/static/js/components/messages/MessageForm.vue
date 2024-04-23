@@ -30,25 +30,40 @@ export default {
     }
   },
   methods: {
-    save() {
+    async save() {
       const message = { text: this.text }
 
+      let response;
       if (this.id) {
-        this.$resource('/seo{/id}').update({id: this.id}, message).then(result =>
-            result.json().then(data => {
-              const index = getIndex(this.messages, data.id)
-              this.messages.splice(index, 1, data)
-              this.text = ''
-              this.id = ''
-            })
-        )
+        response = await fetch(`/seo/${this.id}`, {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(message),
+        });
       } else {
-        messageApi.save({}, message).then(result =>
-            result.json().then(data => {
-              this.messages.push(data)
-              this.text = ''
-            })
-        )
+        response = await fetch('/seo', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(message),
+        });
+      }
+
+      if (response.ok) {
+        const data = await response.json();
+        if (this.id) {
+          const index = this.messages.findIndex(msg => msg.id === data.id);
+          this.messages.splice(index, 1, data);
+        } else {
+          this.messages.push(data);
+        }
+        this.text = '';
+        this.id = '';
+      } else {
+        console.error('Ошибка:', response.status);
       }
     }
   }
