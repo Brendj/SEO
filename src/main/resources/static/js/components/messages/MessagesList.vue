@@ -11,7 +11,6 @@
 </template>
 
 <script>
-import axios from 'axios'
 import MessagesRow from "./MessagesRow.vue";
 import MessageForm from "./MessageForm.vue";
 export default {

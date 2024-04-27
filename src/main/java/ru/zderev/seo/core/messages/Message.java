@@ -12,7 +12,7 @@ import java.time.LocalDate;
 @Table
 public class Message {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @JsonView(Views.IdName.class)
     private Long id;
     @JsonView(Views.IdName.class)
