@@ -1,4 +1,4 @@
-package ru.zderev.SEO;
+package ru.zderev.seo;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

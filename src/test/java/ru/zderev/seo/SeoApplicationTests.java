@@ -1,4 +1,4 @@
-package ru.zderev.SEO;
+package ru.zderev.seo;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
