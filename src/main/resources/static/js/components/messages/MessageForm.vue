@@ -6,15 +6,9 @@
 </template>
 
 <script>
-function getIndex(list, id) {
-  for (var i = 0; i < list.length; i++) {
-    if (list[i].id === id) {
-      return i
-    }
-  }
+import {sendMessage} from "util/ws";
+import {getIndex} from "../../util/collection";
 
-  return -1;
-}
 export default {
   props: ['messages', 'messageAttr'],
   data() {
@@ -31,7 +25,12 @@ export default {
   },
   methods: {
     async save() {
-      const message = { text: this.text }
+
+      sendMessage({id: this.id, text: this.text})
+
+      this.text = '';
+      this.id = '';
+      /*const message = { text: this.text }
 
       let response;
       if (this.id) {
@@ -64,7 +63,7 @@ export default {
         this.id = '';
       } else {
         console.error('Ошибка:', response.status);
-      }
+      }*/
     }
   }
 }

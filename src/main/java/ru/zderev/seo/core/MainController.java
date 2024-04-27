@@ -2,11 +2,14 @@ package ru.zderev.seo.core;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.messaging.handler.annotation.MessageMapping;
+import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import ru.zderev.seo.core.messages.Message;
 import ru.zderev.seo.core.messages.web.MessageRepo;
 import ru.zderev.seo.core.user.User;
 
@@ -38,5 +41,11 @@ public class MainController {
         model.addAttribute("frontendData", data);
         model.addAttribute("isDevMode", "dev".equals(profile));
         return "index";
+    }
+
+    @MessageMapping("/changeMessage")
+    @SendTo("/topic/activity")
+    public Message change(Message message) {
+        return repo.save(message);
     }
 }
