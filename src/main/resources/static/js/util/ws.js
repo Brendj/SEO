@@ -1,7 +1,7 @@
 import { Stomp } from "@stomp/stompjs"
 import SockJS from 'sockjs-client'
 
-var stompClient = Stomp.over(new SockJS('/gs-guide-websocket'))
+let stompClient = Stomp.over(new SockJS('http://localhost:8081/gs-guide-websocket'))
 const handlers = []
 
 stompClient.onConnect = frame => {
@@ -29,8 +29,7 @@ export function connect() {
 }
 
 export function disconnect() {
-    stompClient.deactivate()
-    console.log("Disconnected")
+    stompClient.deactivate().then(r => console.log("Disconnected"))
 }
 
 export function sendMessage(message) {

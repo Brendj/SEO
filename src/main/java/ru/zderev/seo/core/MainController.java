@@ -35,8 +35,10 @@ public class MainController {
         HashMap<Object, Object> data = new HashMap<>();
 
         // TODO: зашифровать пароль
-        data.put("profile", user);
-        data.put("messages", repo.findAll());
+        if (profile != null) {
+            data.put("profile", user);
+            data.put("messages", repo.findAll());
+        }
 
         model.addAttribute("frontendData", data);
         model.addAttribute("isDevMode", "dev".equals(profile));

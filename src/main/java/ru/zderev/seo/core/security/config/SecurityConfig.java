@@ -30,13 +30,15 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return  http.csrf(AbstractHttpConfigurer::disable)
-                .authorizeHttpRequests(auth -> auth.requestMatchers("/**","seo/**").authenticated()
+                .authorizeHttpRequests(auth -> auth
                         .requestMatchers( "/", "/login**", "/js/**", "/error**","/user/new-user").permitAll()
+                        .requestMatchers("/**","seo/**").authenticated()
                         .anyRequest().authenticated())
                 .formLogin(AbstractAuthenticationFilterConfigurer::permitAll)
                 .logout(logout -> logout.logoutUrl("/logout").addLogoutHandler(new SecurityContextLogoutHandler()))
                 .build();
     }
+
 
     @Bean
     public AuthenticationProvider authenticationProvider() {
