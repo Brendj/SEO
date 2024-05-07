@@ -1,8 +1,10 @@
 import { Stomp } from "@stomp/stompjs"
 import SockJS from 'sockjs-client'
 
-let stompClient = Stomp.over(new SockJS('http://localhost:8081/gs-guide-websocket'))
+let stompClient = Stomp.over(() => new SockJS('http://localhost:8081/gs-guide-websocket'))
 const handlers = []
+
+stompClient.debug = function (){}
 
 stompClient.onConnect = frame => {
     console.log('Connected: ' + frame)
