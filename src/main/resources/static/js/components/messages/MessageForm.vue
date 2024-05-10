@@ -1,8 +1,15 @@
 <template>
-  <div style="position: relative; width: 300px">
-    <input type="text" placeholder="Write" v-model="text" />
-    <input type="button" value="Push" @click="save" />
-  </div>
+  <v-layout row class="d-flex align-center">
+    <v-text-field
+        label="Новое событие"
+        variant="outlined"
+        v-model="text"
+    ></v-text-field>
+
+    <v-btn @click="save">
+      Создать
+    </v-btn>
+  </v-layout>
 </template>
 
 <script>

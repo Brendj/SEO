@@ -1013,6 +1013,11 @@
   resolved "https://registry.npmjs.org/@leichtgewicht/ip-codec/-/ip-codec-2.0.5.tgz"
   integrity sha512-Vo+PSpZG2/fmgmiNzYK9qWRh8h/CHrwD0mo1h1DzL4yzHNSfWYujGTYsWGreD000gcgmZ7K4Ys6Tx9TxtsKdDw==
 
+"@mdi/font@^7.4.47":
+  version "7.4.47"
+  resolved "https://registry.yarnpkg.com/@mdi/font/-/font-7.4.47.tgz#2ae522867da3a5c88b738d54b403eb91471903af"
+  integrity sha512-43MtGpd585SNzHZPcYowu/84Vz2a2g31TvPMTm9uTiCSWzaheQySUcSyUH/46fPnuPQWof2yd0pGBtzee/IQWw==
+
 "@pkgjs/parseargs@^0.11.0":
   version "0.11.0"
   resolved "https://registry.npmjs.org/@pkgjs/parseargs/-/parseargs-0.11.0.tgz"
@@ -4052,10 +4057,10 @@ vue@^3.4.23:
     "@vue/server-renderer" "3.4.23"
     "@vue/shared" "3.4.23"
 
-vuetify@^3.6.3:
-  version "3.6.3"
-  resolved "https://registry.yarnpkg.com/vuetify/-/vuetify-3.6.3.tgz#3818a9176198480302ec0aac359c47cb71a75f13"
-  integrity sha512-OBYYJYnNeUYA7kwrv8Rag1EBFbGWAQxJpp0s98U2KQ6SPU7MzzcrvNn7t69vcDbj7mR7Dcf9/jvFapfranXZvA==
+vuetify@^3.6.0-beta.0.0:
+  version "3.6.0-beta.0.0"
+  resolved "https://registry.yarnpkg.com/vuetify/-/vuetify-3.6.0-beta.0.0.tgz#3e34311e5a97544f4de9f603fcb639234e4befb9"
+  integrity sha512-tG/d+nDEXsY33jr7B0Z/NBEkB9YSkDfb2X4wCL3B2fr2ggWv6H/WkhUtyiksuS/7s7ZYWPik8Obtoe4yqiVj4w==
 
 watchpack@^2.4.0, watchpack@^2.4.1:
   version "2.4.1"
