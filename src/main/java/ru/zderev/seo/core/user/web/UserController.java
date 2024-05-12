@@ -1,9 +1,9 @@
 package ru.zderev.seo.core.user.web;
 
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.beans.BeanUtils;
+import org.springframework.web.bind.annotation.*;
+import ru.zderev.seo.core.dto.EventType;
+import ru.zderev.seo.core.messages.Message;
 import ru.zderev.seo.core.user.User;
 import ru.zderev.seo.core.user.service.impl.UserServiceImpl;
 
@@ -18,8 +18,15 @@ public class UserController {
 
     @PostMapping("new-user")
     public String createUser(@RequestBody User user) {
+        System.out.println(user);
         service.createUser(user);
         System.out.print(user.toString());
         return "User " + user.getEmail() + " created";
+    }
+
+    @PutMapping("{id}")
+    public String updateUser(@PathVariable("id") User userFromDb, @RequestBody User user) {
+        service.updateUser(user, userFromDb);
+        return "User " + user.getFirstName() + " updated";
     }
 }

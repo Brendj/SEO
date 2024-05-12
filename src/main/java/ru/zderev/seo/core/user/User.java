@@ -24,7 +24,97 @@ public class User implements Serializable {
     private String email;
     private String password;
     private Role role;
+    private Double statistic;
+    private String sportType;
+    private Integer weight;
+    private Integer height;
+    private Integer discharge;
+    private Integer age;
+    private Integer currentLocation;
+    private Integer previousLocation;
+    private String position;
+    private Double numberOfCompetitions;
     private boolean activity;
+
+    public Double getStatistic() {
+        return statistic;
+    }
+
+    public void setStatistic(Double statistic) {
+        this.statistic = statistic;
+    }
+
+    public String getSportType() {
+        return sportType;
+    }
+
+    public void setSportType(String sportType) {
+        this.sportType = sportType;
+    }
+
+    public Integer getWeight() {
+        return weight;
+    }
+
+    public void setWeight(Integer weight) {
+        this.weight = weight;
+    }
+
+    public Integer getHeight() {
+        return height;
+    }
+
+    public void setHeight(Integer height) {
+        this.height = height;
+    }
+
+    public Integer getDischarge() {
+        return discharge;
+    }
+
+    public void setDischarge(Integer discharge) {
+        this.discharge = discharge;
+    }
+
+    public Integer getAge() {
+        return age;
+    }
+
+    public void setAge(Integer age) {
+        this.age = age;
+    }
+
+    public Integer getCurrentLocation() {
+        return currentLocation;
+    }
+
+    public void setCurrentLocation(Integer currentLocation) {
+        this.currentLocation = currentLocation;
+    }
+
+    public Integer getPreviousLocation() {
+        return previousLocation;
+    }
+
+    public void setPreviousLocation(Integer previousLocation) {
+        this.previousLocation = previousLocation;
+    }
+
+    public String getPosition() {
+        return position;
+    }
+
+    public void setPosition(String position) {
+        this.position = position;
+    }
+
+    public Double getNumberOfCompetitions() {
+        return numberOfCompetitions;
+    }
+
+    public void setNumberOfCompetitions(Double numberOfCompetitions) {
+        this.numberOfCompetitions = numberOfCompetitions;
+    }
 
     public String getPassword() {
         return password;

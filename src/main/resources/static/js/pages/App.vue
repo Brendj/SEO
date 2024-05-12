@@ -10,8 +10,10 @@
       </v-toolbar-title>
       <v-spacer></v-spacer>
       <v-toolbar-items class="hidden-sm-and-down">
-        <v-btn href="/profile">
-          <span v-if="profile">{{ profile.firstName + " " + profile.lastName }}</span>
+        <v-btn>
+          <router-link to="/profile">
+            <span v-if="profile">{{ profile.firstName + " " + profile.lastName }}</span>
+          </router-link>
         </v-btn>
         <v-btn v-if="profile" icon="mdi-export" href="/logout">
         </v-btn>
