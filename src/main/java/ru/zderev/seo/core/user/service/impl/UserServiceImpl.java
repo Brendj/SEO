@@ -6,6 +6,8 @@ import ru.zderev.seo.core.user.User;
 import ru.zderev.seo.core.user.service.UserService;
 import ru.zderev.seo.core.user.web.UserRepo;
 
+import java.util.Optional;
+
 @Service
 public class UserServiceImpl implements UserService {
     private UserRepo repo;
@@ -20,5 +22,16 @@ public class UserServiceImpl implements UserService {
     public void createUser(User user) {
         user.setPassword(encoder.encode(user.getPassword()));
         repo.save(user);
+    }
+
+    @Override
+    public User findByEmail(String email) {
+        Optional<User> userOptional = repo.findByEmail(email);
+        if (userOptional.isPresent()) {
+            User user = userOptional.get();
+            return user;
+        } else {
+            throw new RuntimeException("Not Found");
+        }
     }
 }

@@ -13,11 +13,10 @@
 </template>
 
 <script>
-import {sendMessage} from "util/ws";
-import {getIndex} from "../../util/collection";
+import {mapActions} from "vuex";
 
 export default {
-  props: ['messages', 'messageAttr'],
+  props: ['messageAttr'],
   data() {
     return {
       text: '',
@@ -31,46 +30,21 @@ export default {
     }
   },
   methods: {
+    ...mapActions(['updateMessageAction', 'addMessageAction']),
     async save() {
+      const message = {
+        id: this.id,
+        text: this.text
+      }
 
-      sendMessage({id: this.id, text: this.text})
+      if (this.id) {
+        await this.updateMessageAction(message)
+      } else {
+        await this.addMessageAction(message)
+      }
 
       this.text = '';
       this.id = '';
-      /*const message = { text: this.text }
-
-      let response;
-      if (this.id) {
-        response = await fetch(`/seo/${this.id}`, {
-          method: 'PUT',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(message),
-        });
-      } else {
-        response = await fetch('/seo', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(message),
-        });
-      }
-
-      if (response.ok) {
-        const data = await response.json();
-        if (this.id) {
-          const index = this.messages.findIndex(msg => msg.id === data.id);
-          this.messages.splice(index, 1, data);
-        } else {
-          this.messages.push(data);
-        }
-        this.text = '';
-        this.id = '';
-      } else {
-        console.error('Ошибка:', response.status);
-      }*/
     }
   }
 }
